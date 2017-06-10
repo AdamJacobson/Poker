@@ -4,7 +4,7 @@ require 'hand'
 
 describe Player do
   let(:game) { double("game") }
-  subject(:player) { Player.new("Player 1", game) }
+  subject(:player) { Player.new("Player 1", game, 200) }
 
   context "#new" do
     it "initializes with a hand" do
@@ -20,10 +20,6 @@ describe Player do
     end
   end
 
-  # context "#bankroll" do
-  #   it ""
-  # end
-
   context "#bet" do
     before(:each) { expect(game).to receive(:bet).with(player, 10) }
 
@@ -35,5 +31,15 @@ describe Player do
     it "adds amount to the game pot" do
       player.bet(10)
     end
+
+    it "prevents bets when not enough money"
+  end
+
+  context "#receive_winnings" do
+    it "adds the winnings to the bankroll"
+  end
+
+  context "discard" do
+    it "removes"
   end
 end

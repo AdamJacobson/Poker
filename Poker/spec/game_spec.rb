@@ -10,8 +10,12 @@ describe Game do
 
   context "#new" do
     it "initializes with an array of players" do
-
+      expect(game.players).to eq([player1, player2, player3, player4])
     end
+  end
+
+  context "#play_round" do
+    it "deals a new hand to all players"
   end
 
 end

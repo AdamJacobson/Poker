@@ -22,7 +22,7 @@ class Card
 
   def to_s
     rank_s = (2..10).include?(@rank) ? @rank : RANK_NAME[self.rank]
-    "#{rank_s} of #{SUITS[self.suit]}"
+    "[#{rank_s} of #{SUITS[self.suit]}]"
   end
 
 end

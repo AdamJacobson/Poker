@@ -23,6 +23,10 @@ class Hand
     @cards -= [nil]
   end
 
+  def to_s
+    @cards.map(&:to_s).join(" ")
+  end
+
 end
 
 class TooManyCardsError < StandardError

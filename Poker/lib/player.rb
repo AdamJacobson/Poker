@@ -4,16 +4,30 @@ require 'byebug'
 class Player
   attr_reader :hand, :name, :bankroll
 
-  def initialize(name, game)
+  def initialize(name, bankroll)
     @name = name
-    @game = game
     @hand = Hand.new
-    @bankroll = 200
+    @bankroll = bankroll
+  end
+
+  def join_game(game)
+    @game = game
   end
 
   def bet(num)
-    # debugger
     @bankroll -= num
     @game.bet(self, num)
+  end
+
+  def discard(discards)
+    @hand.discard(discards)
+  end
+
+  def receive_cards(cards)
+    @hand.add_cards(cards)
+  end
+
+  def print_hand
+    @hand.to_s
   end
 end
