@@ -3,9 +3,9 @@ require 'deck'
 
 describe Deck do
   let ("deck") { Deck.new }
-  let ("new_deck") { Deck.new }
 
   context "#new" do
+    let ("new_deck") { Deck.new }
 
     it "creates a new deck of 52 shuffled cards" do
       expect(deck.cards.length).to eq(52)
@@ -25,12 +25,6 @@ describe Deck do
         expect(deck.cards.length).to eq(49)
       end
 
-    end
-  end
-
-  context "#deal" do
-    it "it deals each player 5 cards" do
-      expect
     end
   end
 

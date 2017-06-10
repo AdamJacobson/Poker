@@ -21,11 +21,8 @@ class Card
   end
 
   def to_s
-    if (2..10).include? self.rank
-      "#{@rank} of #{SUITS[self.suit]}"
-    else
-      "#{RANK_NAME[self.rank]} of #{SUITS[self.suit]}"
-    end
+    rank_s = (2..10).include?(@rank) ? @rank : RANK_NAME[self.rank]
+    "#{rank_s} of #{SUITS[self.suit]}"
   end
 
 end
