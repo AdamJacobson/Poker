@@ -15,6 +15,10 @@ class Player
     @game.bet(self, num)
   end
 
+  def num_cards
+    @hand.num_cards
+  end
+
   def join_game(game)
     @game = game
   end

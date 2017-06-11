@@ -26,21 +26,23 @@ class Game
     @bets = Hash.new(0)
     @pot = 0
     @min_bet = 1
-    deck = Deck.new
+    @deck = Deck.new
 
     # deal new cards to all players
-    @players.each { |player| player.receive_cards(deck.draw(5)) }
+    @players.each { |player| player.receive_cards(@deck.draw(5)) }
 
     display_status
 
-    get_player_actions
     # for all players
-    # fold, bet, (see or raise)
-    # have to check against minimum bet
-
-    get_player_discards
+    # fold, bet (see or raise)
+    get_player_actions
 
     # discard up to 3 cards
+    get_player_discards
+
+
+
+
     # fold, bet, (see or raise)
 
     # if all but one player folds, he is the winner
@@ -57,19 +59,18 @@ class Game
 
     @players.each do |player|
       puts "#{player.name}, what will you do?"
-      get_player_discard
+      puts player.hand.to_s
+      puts "Enter indicies with commas to discard. Or enter nothing."
+      input = gets.chomp.strip.split(',').map(&:to_i)
 
-    end
-  end
-
-  def get_player_discard
-    puts "Enter indicies with commas to discard. Or enter nothing."
-    input = gets.chomp.strip.split(',').map(&:to_i)
-
-    if input.empty?
-      puts "player will not discard anything"
-    else
-      puts "player will discard #{input.inspect}"
+      if input.empty?
+        puts "player will not discard anything"
+      else
+        puts "player will discard #{input.inspect}"
+        player.discard(input)
+        player.receive_cards(@deck.draw(5 - player.num_cards))
+        puts "new hand is #{player.print_hand}"
+      end
     end
 
   end

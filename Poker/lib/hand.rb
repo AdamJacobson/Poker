@@ -16,6 +16,10 @@ class Hand
     end
   end
 
+  def num_cards
+    @cards.length
+  end
+
   def discard(discards)
     @cards.each_with_index do |_, idx|
       @cards[idx] = nil if discards.include?(idx)
@@ -24,7 +28,21 @@ class Hand
   end
 
   def to_s
-    @cards.map(&:to_s).join(" ")
+    # @cards.map(&:to_s).join(" ")
+    # [[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3]]
+
+    lines = @cards.map(&:to_a)
+
+    line_idx = 0
+    until line_idx == lines[0].length
+      card_idx = 0
+      until card_idx == lines.length
+        print lines[card_idx][line_idx]
+        card_idx += 1
+      end
+      print "\n"
+      line_idx += 1
+    end
   end
 
 end
