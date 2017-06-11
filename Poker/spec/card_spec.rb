@@ -7,9 +7,8 @@ describe Card do
 
   context "#to_s" do
     it "returns a string representing the card" do
-      expect(good_card.to_s).to eq("Ace of Spades")
-      expect(three_of_clubs.to_s).to eq("3 of Clubs")
-
+      expect(good_card.to_s).to eq("[Ace of Spades]")
+      expect(three_of_clubs.to_s).to eq("[3 of Clubs]")
     end
   end
 
@@ -28,11 +27,11 @@ describe Card do
       let(:bad_rank) { Card.new(14, :H) }
       let(:bad_suit) { Card.new(11, :X) }
       it "raise error if invalid rank" do
-        expect{ bad_rank }.to raise_error(ArgumentError)
+        expect { bad_rank }.to raise_error("not a valid rank")
       end
 
       it "raise error if invalid suit" do
-        expect{ bad_suit }.to raise_error(ArgumentError)
+        expect { bad_suit }.to raise_error("not a valid suit")
       end
     end
   end

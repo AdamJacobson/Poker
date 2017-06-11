@@ -13,7 +13,16 @@ class Game
     play_round
   end
 
+  def game_over?
+    @players.length == 1
+  end
+
+  def round_over?
+    @players_this_round == 1
+  end
+
   def play_round
+    @players_this_round = @players.dup
     @bets = Hash.new(0)
     @pot = 0
     @min_bet = 1
@@ -24,14 +33,14 @@ class Game
 
     display_status
 
+    get_player_actions
     # for all players
     # fold, bet, (see or raise)
     # have to check against minimum bet
 
-    collect_bets
+    get_player_discards
 
     # discard up to 3 cards
-
     # fold, bet, (see or raise)
 
     # if all but one player folds, he is the winner
@@ -43,7 +52,29 @@ class Game
     # take all cards from all players
   end
 
-  def collect_bets
+  def get_player_discards
+    puts "Time to discard"
+
+    @players.each do |player|
+      puts "#{player.name}, what will you do?"
+      get_player_discard
+
+    end
+  end
+
+  def get_player_discard
+    puts "Enter indicies with commas to discard. Or enter nothing."
+    input = gets.chomp.strip.split(',').map(&:to_i)
+
+    if input.empty?
+      puts "player will not discard anything"
+    else
+      puts "player will discard #{input.inspect}"
+    end
+
+  end
+
+  def get_player_actions
     puts "It is #{@players[0].name}'s turn first"
 
     @players.each do |player|

@@ -35,7 +35,7 @@ describe Hand do
     it "raises an error when adding to more than 5 cards" do
       hand.add_cards([card1, card2, card3, card4, card5])
       expect(hand.cards.length).to eq(5)
-      expect { hand.add_cards([card6]) }.to raise_error TooManyCardsError
+      expect { hand.add_cards([card6]) }.to raise_error "Too many cards"
     end
   end
 end

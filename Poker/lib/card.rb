@@ -16,8 +16,8 @@ class Card
   end
 
   def valid?(rank, suit)
-    raise ArgumentError unless (1..13).include?(rank)
-    raise ArgumentError unless SUITS.include?(suit)
+    raise "not a valid rank" unless (1..13).include?(rank)
+    raise "not a valid suit" unless SUITS.include?(suit)
   end
 
   def to_s

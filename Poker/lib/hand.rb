@@ -12,7 +12,7 @@ class Hand
     if @cards.length + new_cards.length < 6
       @cards += new_cards
     else
-      raise TooManyCardsError
+      raise "Too many cards"
     end
   end
 
@@ -27,7 +27,4 @@ class Hand
     @cards.map(&:to_s).join(" ")
   end
 
-end
-
-class TooManyCardsError < StandardError
 end

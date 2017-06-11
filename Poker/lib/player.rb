@@ -2,7 +2,7 @@ require_relative 'hand'
 require 'byebug'
 
 class Player
-  attr_reader :hand, :name, :bankroll
+  attr_reader :hand, :name, :bankroll, :game
 
   def initialize(name, bankroll)
     @name = name
@@ -10,13 +10,13 @@ class Player
     @bankroll = bankroll
   end
 
-  def join_game(game)
-    @game = game
-  end
-
   def bet(num)
     @bankroll -= num
     @game.bet(self, num)
+  end
+
+  def join_game(game)
+    @game = game
   end
 
   def discard(discards)

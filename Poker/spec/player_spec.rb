@@ -4,32 +4,33 @@ require 'hand'
 
 describe Player do
   let(:game) { double("game") }
-  subject(:player) { Player.new("Player 1", game, 200) }
+  subject(:player1) { Player.new("Player 1", 200) }
+  subject(:player2) { Player.new("Player 2", 200) }
 
   context "#new" do
     it "initializes with a hand" do
-      expect(player.hand).to be_a(Hand)
+      expect(player1.hand).to be_a(Hand)
     end
 
     it "initializes with a name" do
-      expect(player.name).to eq("Player 1")
+      expect(player1.name).to eq("Player 1")
     end
 
     it "should initialize with a bankroll of 200" do
-      expect(player.bankroll).to eq(200)
+      expect(player1.bankroll).to eq(200)
     end
   end
 
   context "#bet" do
-    before(:each) { expect(game).to receive(:bet).with(player, 10) }
+    before(:each) { expect(game).to receive(:bet).with(player1, 10) }
 
     it "it removes amount from pot" do
-      player.bet(10)
-      expect(player.bankroll).to eq(190)
+      player1.bet(10)
+      expect(player1.bankroll).to eq(190)
     end
 
     it "adds amount to the game pot" do
-      player.bet(10)
+      player1.bet(10)
     end
 
     it "prevents bets when not enough money"
